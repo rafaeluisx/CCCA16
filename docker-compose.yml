@@ -1,0 +1,15 @@
+services:  # Defines the services (containers) to be created
+  db:  # Names the service 'db'
+    image: postgres:latest  # Specifies the Docker image to use for the service
+    container_name: pg-db  # Sets a custom container name
+    environment:  # Sets environment variables for the container
+      POSTGRES_USER: postgres  # Default user for PostgreSQL
+      POSTGRES_PASSWORD: 123456  # Password for the default user
+      POSTGRES_DB: app  # Default database created upon container startup
+    ports:  # Maps ports between the host and the container
+      - "5432:5432"  # Maps port 5432 on the host to port 5432 on the container
+    volumes:  # Mounts volumes for persistent data storage
+      - postgres_data:/var/lib/postgresql/data  # Mounts the named volume 'postgres_data' to the container's data directory
+
+volumes:  # Defines named volumes that can be used by services
+  postgres_data:  # Names a volume 'postgres_data' for PostgreSQL data persistence
