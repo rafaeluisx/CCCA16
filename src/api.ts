@@ -14,16 +14,36 @@ app.post("/signup", async function (req, res) {
       [req.body.email]
     );
     if (emailAlreadyUsed)
-      return res.status(422).json("error: This e-mail is already registered");
+      return res.status(422).json({
+        status: "error",
+        message: "This e-mail is already registered",
+      });
     if (isInvalidName(req.body.name))
-      return res.status(422).send("This name is not valid");
+      return res
+        .status(422)
+        .json({ status: "error", message: "This name is not valid" });
     if (isInvalidEmail(req.body.email))
-      return res.status(422).send("This e-mail is not valid");
+      return res
+        .status(422)
+        .json({ status: "error", message: "This e-mail is not valid" });
     if (!validate(req.body.cpf))
-      return res.status(422).send("This CPF is not valid");
+      return res
+        .status(422)
+        .json({ status: "error", message: "This CPF is not valid" });
     if (req.body.isDriver && isInvalidLicensePlate(req.body.carPlate))
-      return res.status(422).send("This license plate is not valid");
-    res.json(await addAccount(crypto.randomUUID(), req, connection));
+      return res
+        .status(422)
+        .json({ status: "error", message: "This license plate is not valid" });
+    try {
+      const newAccountUUID = await addAccount(
+        crypto.randomUUID(),
+        req,
+        connection
+      );
+      res.json({ status: "sucess", message: newAccountUUID });
+    } catch (error) {
+      res.json({ status: "error", message: error });
+    }
   } finally {
     await disposeConnection(connection);
   }
