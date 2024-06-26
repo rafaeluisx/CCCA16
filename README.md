@@ -1,5 +1,5 @@
-Este conteúdo é parte do curso Clean Code e Clean Architecture da Branas.io
+This is my progression on Brana's Clean Code and Clean Architecture course.
 
-Para mais informações acesse:
+For more info, access:
 
 https://branas.io

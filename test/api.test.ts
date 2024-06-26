@@ -5,7 +5,7 @@ axios.defaults.validateStatus = function () {
 	return true;
 }
 
-test("Deve criar uma conta válida para o passageiro", async function () {
+test("Should add a valid passenger account", async function () {
 	const input = {
 		name: "John Doe",
 		email: `john.doe${Math.random()}@gmail.com`,
@@ -19,7 +19,7 @@ test("Deve criar uma conta válida para o passageiro", async function () {
 		expect(output.data.accountId).toBe(outputAccount.data.account_id);
 });
 
-test("Deve criar uma conta válida para motorista", async function(){
+test("Should add a valid driver account", async function(){
 	const input = {
 		name: "Marty McFly",
 		email: `marty.mcfly${Math.random()}@gmail.com`,
