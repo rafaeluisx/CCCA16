@@ -8,6 +8,7 @@ create table cccat16.account (
 	email text not null,
 	cpf text not null,
 	car_plate text null,
+	passcode text not null,
 	is_passenger boolean not null default false,
 	is_driver boolean not null default false
 );
